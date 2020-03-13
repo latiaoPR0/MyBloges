@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zwm.dao.ICountMapper">
+    <insert id="addIcontent" parameterType="index_countent">
+        insert into personal_blog.index_content(t_id,t_author,t_title,t_subhead,t_type,t_img,t_imgportrait,t_date)
+        values (#{t_id}, #{t_author}, #{t_subhead}, #{t_type}, #{t_img}, #{t_date},#{t_imgportrait})
+    </insert>
+
+    <delete id="deleteIcontent" parameterType="int">
+        delete from personal_blog.index_content where t_id=#{t_id}
+    </delete>
+
+    <update id="updateIcount" parameterType="index_countent">
+        update personal_blog.index_content
+        set t_author = #{t_author},t_title = #{t_title},t_subhead = #{t_subhead},t_type = #{t_type},t_img = #{t_img},t_date = #{t_date}
+        where t_id = #{t_id}
+    </update>
+
+    <select id="queryByIcountID" resultType="com.zwm.pojo.index_countent">
+        select * from personal_blog.index_content
+        where  t_id = #{t_id}
+    </select>
+
+    <select id="queryAllIcount" resultType="com.zwm.pojo.index_countent">
+        SELECT * from personal_blog.index_content
+    </select>
+
+    <select id="selectAllCount" resultType="com.zwm.pojo.index_countent">
+        select * from personal_blog.index_content
+        limit ${index},#{pagesize}
+    </select>
+
+
+</mapper>
